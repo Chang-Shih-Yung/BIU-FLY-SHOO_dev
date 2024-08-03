@@ -38,7 +38,8 @@ public class GameController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-		Application.targetFrameRate = 60;
+        Application.targetFrameRate = 60;
+        
     }
 
     // Behaviour messages
@@ -48,30 +49,33 @@ public class GameController : MonoBehaviour
         UIManager.Instance.UpdateCoin(coinAmount);
 
         RandomBackGround();
-
+   
         StartCoroutine(StartSpawnObstacle());
         StartCoroutine(StartSpawnEnemyFly());
         StartCoroutine(StartSpawnEnemyRun());
+       
     }
 
     private void RandomBackGround()
     {
-        if (0.0f <= Random.value && Random.value <= 0.25f)
+        float randomValue = Random.value;
+        //Random.value 方法生成一個介於 0 和 1 之間的隨機浮點數
+        if (0.0f <= randomValue && randomValue <= 0.25f)
         {
             bgLayers[0].sprite = Resources.Load<Sprite>("Background/1/Layer1");
             bgLayers[1].sprite = Resources.Load<Sprite>("Background/1/Layer1");
             bgLayers[2].sprite = Resources.Load<Sprite>("Background/1/Layer2");
             bgLayers[3].sprite = Resources.Load<Sprite>("Background/1/Layer2");
-            
+
         }
-        else if (0.26f <= Random.value && Random.value <= 0.5f)
+        else if (0.26f <= randomValue && randomValue <= 0.5f)
         {
             bgLayers[0].sprite = Resources.Load<Sprite>("Background/2/Layer01");
             bgLayers[1].sprite = Resources.Load<Sprite>("Background/2/Layer01");
             bgLayers[2].sprite = Resources.Load<Sprite>("Background/2/Layer02");
             bgLayers[3].sprite = Resources.Load<Sprite>("Background/2/Layer02");
         }
-        else if (0.51f <= Random.value && Random.value <= 0.75f)
+        else if (0.51f <= randomValue && randomValue <= 0.75f)
         {
             bgLayers[0].sprite = Resources.Load<Sprite>("Background/3/Layer01");
             bgLayers[1].sprite = Resources.Load<Sprite>("Background/3/Layer01");
@@ -90,7 +94,7 @@ public class GameController : MonoBehaviour
             bgLayers[2].sprite = Resources.Load<Sprite>("Background/4/Layer02");
             bgLayers[3].sprite = Resources.Load<Sprite>("Background/4/Layer02");
         }
-
+        //bgLayers[0]是那個最慢出現的bgLayer
         bgLayers[0].gameObject.SetActive(true);
         bgLayers[1].gameObject.SetActive(true);
         bgLayers[2].gameObject.SetActive(true);
@@ -102,7 +106,8 @@ public class GameController : MonoBehaviour
         yield return new WaitForSeconds(3.5f);
         obstacles[0].SetActive(true);
     }
-
+    //StartSpawnEnemyFly是一個協程，這個協程會等待25秒後再開始執行SpawnEnemyFly
+    //SpawnEnemyFly中文是產生敵人飛行
     private IEnumerator StartSpawnEnemyFly()
     {
         yield return new WaitForSeconds(25.0f);
@@ -135,6 +140,7 @@ public class GameController : MonoBehaviour
 
     private IEnumerator SpawnEnemyRun()
     {
+        float randomValue = Random.value;
         while (true)
         {
             float waitTime = 0.0f;
@@ -150,7 +156,7 @@ public class GameController : MonoBehaviour
             enemiesRun[randomIndex].SetActive(true);
 
             // Spaw random bullet types
-            if (0.65 <= Random.value && Random.value <= 0.8)
+            if (0.65 <= randomValue && randomValue <= 0.8)
             {
                 int randomIndex2 = 0;
                 do
@@ -162,7 +168,7 @@ public class GameController : MonoBehaviour
             }
 
             // Spaw heal item
-            if (0.4 <= Random.value && Random.value <= 0.5)
+            if (0.4 <= randomValue && randomValue <= 0.5)
             {
                 if (!itemTypes[6].activeInHierarchy)
                 {
@@ -245,7 +251,7 @@ public class GameController : MonoBehaviour
 
     private IEnumerator WaitBeforeGameOver()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(1.5f);
         UIManager.Instance.GameOverShow();
     }
 }
