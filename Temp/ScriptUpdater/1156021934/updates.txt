@@ -1,0 +1,1 @@
+Temp/ScriptUpdater/1156021934/1842818090_TwoByTwoTransformEffectExample.cs => Assets/Spine Examples/Scripts/Sample Components/Sample VertexEffects/TwoByTwoTransformEffectExample.cs

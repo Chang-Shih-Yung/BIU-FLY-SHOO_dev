@@ -67,10 +67,17 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
+        //PlayerPrefs.GetInt 方法從存儲中讀取一個整數值。這個值是之前存儲的玩家選擇的角色ID。
+        //Constants.CHARACTER_SELECT 是一個字符串常量，用來標識這個存儲的值。
+        //如果沒有找到這個鍵值對，則使用默認值 1。
         int characterSelect = PlayerPrefs.GetInt(Constants.CHARACTER_SELECT, 1);
-        string animControllerPath = "Animation/Animators/C" + characterSelect;
+
+        //通過將字符串 "Animation/Animators/C" 和 characterSelect 的值拼接，構建出動畫控制器的資源路徑。
+        string animControllerPath = "Animation/Animators/C" + characterSelect;//C1 C2 C3 C4 C5 C6 C7 C8 
         Debug.Log("Loading animator controller from path: " + animControllerPath);
+
+        //RuntimeAnimatorController 可以綁定動畫參數（如浮點數、整數、布爾值和觸發器），這些參數可以用來控制動畫狀態的變化。
+        //根據玩家的角色選擇'動態加載'並設置對應的動畫控制器(導入上面加載的動畫控制器名稱)，以便該角色能夠使用正確的動畫。
         anim.runtimeAnimatorController = Resources.Load(animControllerPath) as RuntimeAnimatorController;
 
         // Set the bullet type based on the selected character
