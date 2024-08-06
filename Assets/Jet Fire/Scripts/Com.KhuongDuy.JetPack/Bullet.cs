@@ -81,6 +81,7 @@ public class Bullet : MonoBehaviour
     }
 
     // Behaviour messages
+    //玩家子彈碰到敵人
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Hurt" || collision.tag == "EnemyFly" || collision.tag == "EGunStay")

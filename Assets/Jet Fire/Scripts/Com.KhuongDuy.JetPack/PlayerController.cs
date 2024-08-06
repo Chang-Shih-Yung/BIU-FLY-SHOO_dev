@@ -80,20 +80,24 @@ public class PlayerController : MonoBehaviour
         //根據玩家的角色選擇'動態加載'並設置對應的動畫控制器(導入上面加載的動畫控制器名稱)，以便該角色能夠使用正確的動畫。
         anim.runtimeAnimatorController = Resources.Load(animControllerPath) as RuntimeAnimatorController;
 
-        // Set the bullet type based on the selected character
-        typeBullet = characterSelect;
-        Debug.Log("Initial bullet type set to: " + typeBullet);
+
+        // 如果你要讓子彈類型跟選角色有關，那麼這裡的 typeBullet = characterSelect; 就是對的
+        //但這裡的子彈模式是靠吃道具所以暫時不用這個
+
+        // typeBullet = characterSelect;
+        // Debug.Log("Initial bullet type set to: " + typeBullet);
     }
 
     // Behaviour messages
     void Start()
     {
-        HP = 100;
+        HP = 150;
 
         flyHash = Animator.StringToHash("Fly");
         layerMaskWalkable = LayerMask.GetMask("Walkable");
 
         distanceMove = 0.0f;
+        
     }
 
     public void JumpBtnDown()
@@ -205,18 +209,22 @@ public class PlayerController : MonoBehaviour
     }
 
     // Behaviour messages
-    void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Collision detected with tag: " + collision.tag + " and name: " + collision.name);
+        //吃金幣
         if (collision.tag == "Coin")
         {
             collision.gameObject.SetActive(false);
 
             GameController.Instance.CreateCoinEffect(collision.transform.position);
         }
+        //吃道具
         else if (collision.tag == "TypeFly")
         {
             HandleTypeFly(collision);
         }
+        //吃敵人子彈
         else if (collision.tag == "EBullet")
         {
             HP -= 10;
@@ -224,8 +232,10 @@ public class PlayerController : MonoBehaviour
 
             CheckDie();
         }
+        //標籤Hurt是站在地上的敵人、EnemyFly是飛行的敵人
         else if (collision.tag == "Hurt" || collision.tag == "EnemyFly")
         {
+            //EBomb敵人的炸彈
             if (collision.name != "EBomb")
             {
                 HP -= 20;
@@ -250,6 +260,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //根据飞行物的名字，切换玩家的子弹类型，并在特定情况下增加玩家的 HP（生命值）。碰撞发生后，飞行物被禁用，并生成一个金币效果
+    //就是一個吃道具改變武器種類的方法
     private void HandleTypeFly(Collider2D collision)
     {
         if (collision.name == "1")
@@ -275,13 +287,15 @@ public class PlayerController : MonoBehaviour
         else if (collision.name == "6")
         {
             typeBullet = 6;
-        }
-        else if (collision.name == "7")
-        {
             HP += 20;
             UIManager.Instance.UpdatePlayerHP(20);
         }
-        Debug.Log("Bullet type switched to: " + typeBullet);
+        else if (collision.name == "7")
+        {
+            HP += 50;
+            UIManager.Instance.UpdatePlayerHP(50);
+        }
+        // Debug.Log("Bullet type switched to: " + typeBullet);
         GameController.Instance.CreateCoinEffect(collision.transform.position);
         collision.gameObject.SetActive(false);
     }
