@@ -78,8 +78,8 @@ public class UIManager : MonoBehaviour
     }
 
     public void UpdatePlayerHP(int amount)
-    {
-        playerHPBar.localScale = new Vector3(Mathf.Clamp01(playerHPBar.localScale.x + (amount / 100.0f)), 1.0f, 1.0f);
+    {   //血量更改處
+        playerHPBar.localScale = new Vector3(Mathf.Clamp01(playerHPBar.localScale.x + (amount / 150.0f)), 1.0f, 1.0f);
     }
 
     // Pause button is clicked

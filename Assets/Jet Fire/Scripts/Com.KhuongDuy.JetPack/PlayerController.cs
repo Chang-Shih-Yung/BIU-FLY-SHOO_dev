@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
         jumpForce,
         distanceFactor,
         speedBulletType1,
+        //上一發到下一發的間隔時間
         fireRateBulletType1,
         speedBulletType2,
         fireRateBulletType2,
@@ -93,11 +94,16 @@ public class PlayerController : MonoBehaviour
     {
         HP = 150;
 
+        //以下是初始化抓取飛行與碰撞圖層的狀態，即在游戏对象启用后调用一次的方法
+        //Animator.StringToHash 方法將字符串轉換為整數值，這樣可以更快地訪問動畫狀態。
+        //其實就是Fly的動畫狀態
         flyHash = Animator.StringToHash("Fly");
+        //LayerMask.GetMask 方法返回一個整數值，該值包含所有傳入的層的位掩碼。
+        //以便在物理碰撞檢測中使用。
         layerMaskWalkable = LayerMask.GetMask("Walkable");
-
+        //初始移動距離
         distanceMove = 0.0f;
-        
+
     }
 
     public void JumpBtnDown()
@@ -287,13 +293,13 @@ public class PlayerController : MonoBehaviour
         else if (collision.name == "6")
         {
             typeBullet = 6;
-            HP += 20;
-            UIManager.Instance.UpdatePlayerHP(20);
+            HP += 10;
+            UIManager.Instance.UpdatePlayerHP(10);
         }
         else if (collision.name == "7")
         {
-            HP += 50;
-            UIManager.Instance.UpdatePlayerHP(50);
+            HP += 30;
+            UIManager.Instance.UpdatePlayerHP(30);
         }
         // Debug.Log("Bullet type switched to: " + typeBullet);
         GameController.Instance.CreateCoinEffect(collision.transform.position);
@@ -324,7 +330,10 @@ public class PlayerController : MonoBehaviour
     {
         if (isJump)
         {
+            //给玩家一个向上的速度，使其跳起来
+            //在控制面板給數值：4.7
             rg2D.velocity = new Vector2(0.0f, jumpForce);
+            //设置动画状态为飞行
             anim.SetBool(flyHash, true);
             smoke.SetActive(true);
         }
@@ -333,8 +342,9 @@ public class PlayerController : MonoBehaviour
         {
             Shoot();
         }
-
+        //检查玩家是否在地面上
         CheckGround();
+        //更新玩家移动的距离
         UpdateDistance();
     }
 }
