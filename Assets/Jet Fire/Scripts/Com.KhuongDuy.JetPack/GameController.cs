@@ -147,6 +147,7 @@ public class GameController : MonoBehaviour
             waitTime = Random.Range(2.5f, 5.0f);
             yield return new WaitForSeconds(waitTime);
 
+            //隨機激活跑步的敵人，隨機整數0~5之間
             int randomIndex = 0;
             do
             {

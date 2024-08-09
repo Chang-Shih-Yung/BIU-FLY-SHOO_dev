@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour
 
     private int
         flyHash,
+        shootHash,
         layerMaskWalkable,
         HP;
 
@@ -98,6 +99,7 @@ public class PlayerController : MonoBehaviour
         //Animator.StringToHash 方法將字符串轉換為整數值，這樣可以更快地訪問動畫狀態。
         //其實就是Fly的動畫狀態
         flyHash = Animator.StringToHash("Fly");
+        shootHash = Animator.StringToHash("Shoot");
         //LayerMask.GetMask 方法返回一個整數值，該值包含所有傳入的層的位掩碼。
         //以便在物理碰撞檢測中使用。
         layerMaskWalkable = LayerMask.GetMask("Walkable");
@@ -153,6 +155,9 @@ public class PlayerController : MonoBehaviour
         {
             Type_1_2_5_6(bulletType6, fireRateBulletType6);
         }
+        //動畫只播放一次，bool就變成false
+        anim.SetBool(shootHash, true);
+
     }
 
     private void Type_1_2_5_6(GameObject[] bulletType, float fireRate)
@@ -341,6 +346,8 @@ public class PlayerController : MonoBehaviour
         if (isFire)
         {
             Shoot();
+        }else{
+            anim.SetBool(shootHash, false);
         }
         //检查玩家是否在地面上
         CheckGround();

@@ -24,10 +24,12 @@ public class Enemy : MonoBehaviour
         {
             prefabBullet = Resources.Load<GameObject>("Prefabs/EBullet");
 
-            bullets = new GameObject[2];
+            bullets = new GameObject[3];
 
             bullets[0] = Instantiate(prefabBullet, prefabBullet.transform.position, prefabBullet.transform.rotation) as GameObject;
             bullets[1] = Instantiate(prefabBullet, prefabBullet.transform.position, prefabBullet.transform.rotation) as GameObject;
+            bullets[2] = Instantiate(prefabBullet, prefabBullet.transform.position, prefabBullet.transform.rotation) as GameObject;
+
 
             firePoint = transform.GetChild(0);
         }
