@@ -1,0 +1,157 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETStandard,Version=v2.1": {
+      "Unity.2D.Sprite.Editor/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "UnityEditor.UI": "1.0.0",
+          "UnityEngine.UI": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Unity.2D.Sprite.Editor.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Unity.2D.Sprite.Editor.dll": {}
+        }
+      },
+      "Unity.2D.Tilemap.Editor/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "UnityEditor.UI": "1.0.0",
+          "UnityEngine.UI": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Unity.2D.Tilemap.Editor.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Unity.2D.Tilemap.Editor.dll": {}
+        }
+      },
+      "UnityEditor.UI/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "UnityEngine.UI": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/UnityEditor.UI.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UnityEditor.UI.dll": {}
+        }
+      },
+      "UnityEngine.UI/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/UnityEngine.UI.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UnityEngine.UI.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Unity.2D.Sprite.Editor/1.0.0": {
+      "type": "project",
+      "path": "Unity.2D.Sprite.Editor.csproj",
+      "msbuildProject": "Unity.2D.Sprite.Editor.csproj"
+    },
+    "Unity.2D.Tilemap.Editor/1.0.0": {
+      "type": "project",
+      "path": "Unity.2D.Tilemap.Editor.csproj",
+      "msbuildProject": "Unity.2D.Tilemap.Editor.csproj"
+    },
+    "UnityEditor.UI/1.0.0": {
+      "type": "project",
+      "path": "UnityEditor.UI.csproj",
+      "msbuildProject": "UnityEditor.UI.csproj"
+    },
+    "UnityEngine.UI/1.0.0": {
+      "type": "project",
+      "path": "UnityEngine.UI.csproj",
+      "msbuildProject": "UnityEngine.UI.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETStandard,Version=v2.1": [
+      "Unity.2D.Sprite.Editor >= 1.0.0",
+      "Unity.2D.Tilemap.Editor >= 1.0.0",
+      "UnityEditor.UI >= 1.0.0",
+      "UnityEngine.UI >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "/Users/henrychang/.nuget/packages/": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "/Users/henrychang/Desktop/Unity/Fly Shooter/Assembly-CSharp.csproj",
+      "projectName": "Assembly-CSharp",
+      "projectPath": "/Users/henrychang/Desktop/Unity/Fly Shooter/Assembly-CSharp.csproj",
+      "packagesPath": "/Users/henrychang/.nuget/packages/",
+      "outputPath": "/Users/henrychang/Desktop/Unity/Fly Shooter/Temp/obj/Debug/Assembly-CSharp/",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "/Users/henrychang/.nuget/NuGet/NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "netstandard2.1"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "projectReferences": {
+            "/Users/henrychang/Desktop/Unity/Fly Shooter/Unity.2D.Sprite.Editor.csproj": {
+              "projectPath": "/Users/henrychang/Desktop/Unity/Fly Shooter/Unity.2D.Sprite.Editor.csproj"
+            },
+            "/Users/henrychang/Desktop/Unity/Fly Shooter/Unity.2D.Tilemap.Editor.csproj": {
+              "projectPath": "/Users/henrychang/Desktop/Unity/Fly Shooter/Unity.2D.Tilemap.Editor.csproj"
+            },
+            "/Users/henrychang/Desktop/Unity/Fly Shooter/UnityEditor.UI.csproj": {
+              "projectPath": "/Users/henrychang/Desktop/Unity/Fly Shooter/UnityEditor.UI.csproj"
+            },
+            "/Users/henrychang/Desktop/Unity/Fly Shooter/UnityEngine.UI.csproj": {
+              "projectPath": "/Users/henrychang/Desktop/Unity/Fly Shooter/UnityEngine.UI.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      }
+    },
+    "frameworks": {
+      "netstandard2.1": {
+        "targetAlias": "netstandard2.1",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.203/RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
